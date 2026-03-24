@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+int main() {
+    int r, c, i, j;
+
+    // 1. Correctly prompt for rows and columns
+    printf("Enter number of rows and columns: ");
+    scanf("%d %d", &r, &c); // Added '&' for the second variable and space in format string
+
+    // Use Variable Length Arrays (VLA) as allowed in C99, with correct declaration
+    int matrix[r][c], transpose[c][r];
+
+    // 2. Input matrix elements
+    printf("\nEnter elements of the matrix:\n");
+    for (i = 0; i < r; i++) {
+        for (j = 0; j < c; j++) {
+            // Corrected input statement and loop conditions
+            scanf("%d", &matrix[i][j]); 
+        }
+    }
+
+    // Optional: Print the original matrix to verify input
+    printf("\nOriginal matrix:\n");
+    for (i = 0; i < r; i++) {
+        for (j = 0; j < c; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+
+
+    // 3. Finding the transpose by swapping indices
+    for (i = 0; i < r; i++) {
+        for (j = 0; j < c; j++) {
+            transpose[j][i] = matrix[i][j]; // Store A[i][j] in transpose[j][i]
+        }
+    }
+
+    // 4. Print the transposed matrix
+    printf("\nTranspose of the matrix:\n");
+    // Loops for transpose use 'c' for rows and 'r' for columns
+    for (i = 0; i < c; i++) {
+        for (j = 0; j < r; j++) {
+            printf("%d ", transpose[i][j]);
+        }
+        printf("\n"); // Newline after each row
+    }
+
+    return 0;
+}
